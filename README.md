@@ -2,7 +2,7 @@
 
 ## Overview
 
-✨ The Kpop Photocards Chrome Extension displays a random Kpop photocard and an inspirational quote each time you open a new tab, featuring a pixel art theme with pastel colors and animations. 💅
+✨ The Kpop Photocards Chrome Extension displays a random Kpop photocard and an inspirational quote each time you open a new tab, featuring a pixel art theme with pastel colors and animations. View the [live preview here](https://sixiann.github.io/kpop-chrome-extension/) 💅
 
 ## UI Libraries
 
