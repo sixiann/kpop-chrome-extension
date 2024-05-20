@@ -9,41 +9,74 @@ const colors = [
   "#a2d2ff",
   "#bde0fe",
   "#e8dff5",
-  "#cdb4db"
+  "#cdb4db",
 ];
 
-function getRandom(array){
-    const randomIndex = Math.floor(Math.random() * array.length);
-    return array[randomIndex];
-}; 
+function getRandom(array) {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
 
 function setRandomBackgroundColor() {
   const randomColor = getRandom(colors);
   document.body.style.backgroundColor = randomColor;
 }
 
-function displayRandomQuote() {
-    const randomQuote = getRandom(quotes)['q'];
-    const randomQuoteDiv = document.getElementById('random-quote');
-    
-    let i = 0;
-    const speed = 35;
-
-    function typeWriter() {
-        if (i < randomQuote.length) {
-            randomQuoteDiv.innerHTML += randomQuote.charAt(i);
-            i++;
-            setTimeout(typeWriter, speed);
-        }
+function typeWriter(div, text, speed) {
+  let i = 0;
+  function type() {
+    if (i < text.length) {
+      div.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
     }
+  }
+  type();
+}
 
-    typeWriter();
-};
+function displayRandomQuote() {
+  const randomQuote = getRandom(quotes)["q"];
+  const randomQuoteDiv = document.getElementById("random-quote");
+  typeWriter(randomQuoteDiv, randomQuote, 35);
+}
 
+function displayRandomIdol() {
+  const randomIdol = getRandom(idols);
 
-function initialize(){
-    setRandomBackgroundColor();
-    displayRandomQuote();
+  const IdolName = randomIdol["name"];
+  const IdolPic = randomIdol["image_url"];
+  const IdolUrl = randomIdol["member_url"];
+
+  //display name
+  const nameElement = document.querySelector(".title");
+  typeWriter(nameElement, IdolName, 90);
+
+  //display picture
+  const imgElement = document.createElement("img");
+  imgElement.setAttribute("draggable", "false");
+  imgElement.setAttribute("src", IdolPic);
+
+  document.getElementById("idol-pic").appendChild(imgElement);
+
+  // Create a link element
+  const linkElement = document.createElement("a");
+  linkElement.setAttribute("href", IdolUrl);
+  linkElement.setAttribute("target", "_blank"); // Open link in a new tab
+  linkElement.appendChild(imgElement);
+
+  // Append the link to the "idol-pic" div
+  document.getElementById("idol-pic").appendChild(linkElement);
+
+  //image display effect
+  setTimeout(() => {
+    imgElement.style.opacity = 1;
+  }, 100);
+}
+
+function initialize() {
+  setRandomBackgroundColor();
+  displayRandomQuote();
+  displayRandomIdol();
 }
 
 window.onload = initialize;

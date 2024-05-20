@@ -13,6 +13,7 @@ body {
 
 .central-container {
   width: 70%;
+  height: 617px;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -44,6 +45,7 @@ body {
 .decor {
   position: absolute;
   z-index: 10;
+  user-select: none;
 }
 
 .top-left {
@@ -72,6 +74,7 @@ body {
   opacity: 90%;
   margin: 0 auto;
   display: block;
+  user-select: none;
 }
 
 .shadow img {
@@ -84,4 +87,9 @@ body {
   -webkit-transform: translateX(-3px);
   transform: translateX(-3px);
   transition: 0.5s ease;
+}
+
+#idol-pic img {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0; /* Initially set opacity to 0 */
 }
