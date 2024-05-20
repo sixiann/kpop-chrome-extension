@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+from PIL import Image
+from io import BytesIO
 
 
 root_url = "https://kpop.fandom.com/"
@@ -65,16 +67,25 @@ def get_idol_data(member_url):
     soup = get_html(member_url)
 
     # name
-    name_tag = soup.find("h2", attrs={"data-source": "name"})
-    name = name_tag.text
+    # name_tag = soup.find("h2", attrs={"data-source": "name"})
+    # name = name_tag.text
+    name = soup.find(id='firstHeading').get_text(strip=True)
+    member_url = root_url[:-1] + member_url
+
 
     # photo
     image_figure = soup.find("figure", attrs={"data-source": "image"})
     image_url = image_figure.find("img")["src"]
+    response = requests.get(image_url)
 
-    member_url = root_url[:-1] + member_url
+    image = Image.open(BytesIO(response.content))
+    width, height = image.size
+    if width < height:
+        add = True 
+    else:
+        add = False
 
-    return {"name": name, "image_url": image_url, "member_url": member_url}
+    return {"name": name, "image_url": image_url, "member_url": member_url, "add": add}
 
 
 if __name__ == "__main__":
@@ -84,7 +95,7 @@ if __name__ == "__main__":
     # test_group_page = "wiki/NCT"
     # print(get_members(test_group_page))
 
-    # test_member_page = "/wiki/Pharita"
+    # test_member_page = "/wiki/Kelly_(BADVILLAIN)"
     # print(get_idol_data(test_member_page))
 
     # full list of groups
@@ -106,8 +117,9 @@ if __name__ == "__main__":
                 for member_url in member_urls:
 
                     idol_data = get_idol_data(member_url)
-                    json.dump(idol_data, f, indent=2)
-                    f.write(",")
+                    if idol_data["add"]:
+                        json.dump(idol_data, f, indent=2)
+                        f.write(",")
             except:
                 continue
 
