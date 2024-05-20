@@ -50,12 +50,13 @@ function displayRandomIdol() {
   //display name
   const nameElement = document.querySelector(".title");
   typeWriter(nameElement, IdolName, 90);
+  nameElement.style.textOverflow = "ellipsis";
 
   //display picture
   const imgElement = document.createElement("img");
   imgElement.setAttribute("draggable", "false");
   imgElement.setAttribute("src", IdolPic);
-  // imgElement.classList.add("animate__animated");
+  // imgElement.classList.add("responsive");
   // imgElement.classList.add("animate__jackInTheBox");
 
   document.getElementById("idol-pic").appendChild(imgElement);

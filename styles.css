@@ -12,8 +12,7 @@ body {
 }
 
 .central-container {
-  width: 70%;
-  height: 617px;
+  margin-top: 2%;
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -21,18 +20,26 @@ body {
   z-index: 1;
 }
 
+#random-quote{
+  text-overflow: ellipsis;
+}
+
 .nes-balloon {
-  width: 30%;
+  /* width: 350px; */
+  width: 20%;
   margin-top: -5%;
   margin-left: 2%;
   z-index: 1;
+  text-overflow: ellipsis;
 }
+
 
 #picture-container {
   background-color: white;
   display: flex;
   flex-direction: column;
   z-index: 1;
+
 }
 
 .icons {
@@ -62,9 +69,11 @@ body {
   transform: scaleX(-1);
 }
 
+
 .top-right {
   top: 20px;
-  left: 406px;
+  /* left: 400px; */
+  left: 102%;
   z-index: 0;
 }
 
