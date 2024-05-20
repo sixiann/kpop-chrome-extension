@@ -39,8 +39,6 @@ body {
   width: 100%;
   justify-content: space-around;
   padding-top: 3%;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
 }
 
 .decor {
@@ -90,7 +88,6 @@ body {
   transition: 0.5s ease;
 }
 
-#idol-pic img {
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0; /* Initially set opacity to 0 */
+.animate__animated.animate__pulse {
+  animation-iteration-count: infinite;
 }

@@ -55,6 +55,8 @@ function displayRandomIdol() {
   const imgElement = document.createElement("img");
   imgElement.setAttribute("draggable", "false");
   imgElement.setAttribute("src", IdolPic);
+  // imgElement.classList.add("animate__animated");
+  // imgElement.classList.add("animate__jackInTheBox");
 
   document.getElementById("idol-pic").appendChild(imgElement);
 
@@ -66,16 +68,6 @@ function displayRandomIdol() {
 
   // Append the link to the "idol-pic" div
   document.getElementById("idol-pic").appendChild(linkElement);
-
-  //image display effect
-  const icons = document.querySelector(".icons");
-  setTimeout(() => {
-    imgElement.style.opacity = 1;
-    icons.style.opacity = 1;
-  }, 100);
-
-  // document.querySelector(".icons").style.display="inline";
-
 }
 
 function initialize() {
