@@ -3,12 +3,13 @@ const colors = [
   "#FFCAD4",
   "#FCD5CE",
   "#ffc2d1",
-  "#ff8fab",
   "#ffe5ec",
   "#a2d2ff",
   "#bde0fe",
   "#e8dff5",
   "#cdb4db",
+  "#CAF9FE",
+  "#D1D9FF"
 ];
 
 function getRandom(array) {
