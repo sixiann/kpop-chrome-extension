@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "Kpop Photocards",
+    "version": "1.0",
+    "description": "Displays a random Kpop photocard and an inspirational quote each time you open a new tab.",
+    "author": "github.com/sixiann",
+    "chrome_url_overrides" : {
+      "newtab": "newpage.html"
+    },
+    "icons": {
+        "16": "icons8-pixel-heart-48.png",
+        "128": "icon128.webp"
+      }
+}
