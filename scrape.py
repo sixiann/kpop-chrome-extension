@@ -6,15 +6,15 @@ import json
 root_url = "https://kpop.fandom.com/"
 
 
-#these are the pages i think are the most relevant 
+# these are the pages i think are the most relevant
 category_urls = [
     "/wiki/Category:Female_groups",
     "/wiki/Category:Male_groups",
     "/wiki/Category:Male_soloists",
-    "/wiki/Category:Female_soloists"
+    "/wiki/Category:Female_soloists",
 ]
 
-#some groups i want to manually add 
+# some groups i want to manually add
 additional_group_urls = [
     "/wiki/NCT",
     "/wiki/MONSTA_X",
@@ -24,54 +24,57 @@ additional_group_urls = [
     "/wiki/BTS",
     "/wiki/BLACKPINK",
     "/wiki/TWICE",
-    "/wiki/NewJeans"
-    "/wiki/LE_SSERAFIM"
+    "/wiki/NewJeans" "/wiki/LE_SSERAFIM",
 ]
 
 
-#return the html soup of a url
+# return the html soup of a url
 def get_html(url):
     url = root_url + url
     response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
+    soup = BeautifulSoup(response.content, "html.parser")
     return soup
 
-#get trending groups
+
+# get trending groups
 def get_trending_groups(category_url):
-    '''given the page url of a group category, return a list of page urls of trending groups'''
+    """given the page url of a group category, return a list of page urls of trending groups"""
 
     soup = get_html(category_url)
-    trending_div = soup.find('ul', class_='category-page__trending-pages')
-    hrefs = [a['href'] for a in trending_div.find_all('a')]
+    trending_div = soup.find("ul", class_="category-page__trending-pages")
+    hrefs = [a["href"] for a in trending_div.find_all("a")]
 
     return hrefs
 
 
-#get members of trending groups
+# get members of trending groups
 def get_members(group_url):
-    '''given the page url of a group, return a list of page urls of all members'''
-    
+    """given the page url of a group, return a list of page urls of all members"""
+
     soup = get_html(group_url)
-    current_div = soup.find('div', attrs={'data-source': 'current'})
-    hrefs = [a['href'] for a in current_div.find_all('a')]
+    current_div = soup.find("div", attrs={"data-source": "current"})
+    hrefs = [a["href"] for a in current_div.find_all("a")]
 
     return hrefs
 
-#get image and name from member page
+
+# get image and name from member page
 def get_idol_data(member_url):
-    '''given the page url of an idol, return dictionary with name and photo'''
+    """given the page url of an idol, return dictionary with name and photo"""
 
     soup = get_html(member_url)
 
-    #name 
-    name_tag = soup.find('h2', attrs={'data-source': 'name'})
+    # name
+    name_tag = soup.find("h2", attrs={"data-source": "name"})
     name = name_tag.text
 
-    #photo
-    image_figure = soup.find('figure', attrs={'data-source': 'image'})
-    image_url = image_figure.find('img')['src']
+    # photo
+    image_figure = soup.find("figure", attrs={"data-source": "image"})
+    image_url = image_figure.find("img")["src"]
 
-    return {'name': name, 'image_url': image_url} 
+    member_url = root_url[:-1] + member_url
+
+    return {"name": name, "image_url": image_url, "member_url": member_url}
 
 
 if __name__ == "__main__":
@@ -84,38 +87,30 @@ if __name__ == "__main__":
     # test_member_page = "/wiki/Pharita"
     # print(get_idol_data(test_member_page))
 
-    #full list of groups 
+    # full list of groups
     group_urls = []
     for category_url in category_urls:
         group_urls += get_trending_groups(category_url)
 
     group_urls += additional_group_urls
-    
 
-    #write to json file
-    with open('idol_data.js', 'w') as f:
-        f.write('const idolData = [\n')
+    # write to json file
+    with open("idols.js", "w") as f:
+        f.write("const idols = [\n")
 
         for group_url in group_urls:
 
-            #captures all irregular html 
-            try: 
+            # captures all irregular html
+            try:
                 member_urls = get_members(group_url)
                 for member_url in member_urls:
-                    
+
                     idol_data = get_idol_data(member_url)
                     json.dump(idol_data, f, indent=2)
-                    f.write(',')
+                    f.write(",")
             except:
-                continue 
-                
+                continue
 
-        
-        f.write(']')
-    
+        f.write("]")
+
     f.close()
-
-
-                
-
-
