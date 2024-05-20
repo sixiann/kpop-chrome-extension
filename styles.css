@@ -37,9 +37,10 @@ body {
 
 .icons {
   width: 100%;
-  /* display:flex; */
   justify-content: space-around;
   padding-top: 3%;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
 }
 
 .decor {

@@ -68,9 +68,14 @@ function displayRandomIdol() {
   document.getElementById("idol-pic").appendChild(linkElement);
 
   //image display effect
+  const icons = document.querySelector(".icons");
   setTimeout(() => {
     imgElement.style.opacity = 1;
+    icons.style.opacity = 1;
   }, 100);
+
+  // document.querySelector(".icons").style.display="inline";
+
 }
 
 function initialize() {
