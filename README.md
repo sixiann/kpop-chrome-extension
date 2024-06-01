@@ -2,7 +2,8 @@
 
 ## Overview
 
-✨ The Kpop Photocards Chrome Extension displays a random Kpop photocard and an inspirational quote each time you open a new tab, featuring a pixel art theme with pastel colors and animations.) 💅
+✨ The Kpop Photocards Chrome Extension displays a random Kpop photocard and an inspirational quote each time you open a new tab, featuring a pixel art theme with pastel colors and animations. 💅
+Find it on the Chrome web store [here](https://chromewebstore.google.com/detail/kpop-photocards/agpglppaijnmkfmebnadcfopepajllok).
 
 ![Jisoo Screenshot](screenshots/jisoo.png)
 ![Straykids Screenshot](screenshots/straykids.png)
@@ -20,8 +21,9 @@
 - [Pixel Art Rainbow](https://www.pinterest.com/pin/440649144763579925/)
 
 ## Installation
-
-1. Clone or download this repository.
+1. Add to chrome through the [web store](https://chromewebstore.google.com/detail/kpop-photocards/agpglppaijnmkfmebnadcfopepajllok)<br>
+OR <br>
+1. Clone or download this repository.<br>
 2. Open Chrome and go to `chrome://extensions/`.
 3. Enable "Developer mode" by toggling the switch in the upper-right corner.
 4. Click on "Load unpacked" and select the repository folder.
